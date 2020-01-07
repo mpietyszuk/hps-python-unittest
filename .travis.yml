@@ -1,12 +1,12 @@
 language: python
 sudo: false
-python: 2.7.10
+python: 2.7
 
 before_install:
-  - rvm install 2.6.5
-  - rvm use 2.6.5
+  - rvm install 2.2
+  - rvm use 2.2
   - gem install hiptest-publisher
-  - hiptest-publisher -c python-unittest.conf --only=tests --test-run-id=341219
+  - hiptest-publisher -c python-unittest.conf --token=$SECRET_TOKEN --only=tests --test-run-id=1357
 
 script:
  - python bootstrap.py
@@ -14,4 +14,4 @@ script:
  - bin/test --with-xunit
 
 after_script:
-  - hiptest-publisher -c python-unittest.conf --push="nosetests.xml" --test-run-id=341219
+  - hiptest-publisher -c python-unittest.conf --token=$SECRET_TOKEN --push="nosetests.xml" --test-run-id=1357
